@@ -17,19 +17,17 @@ def canUnlockAll(boxes):
     for box in boxes:
         if type(box) is not list:
             return False
-    # status of each box
-    status = [False for i in range(len(boxes))]
-    status[0] = True
-    # get the key from box 0 (default opened box)
-    keys = [key for key in boxes[0]]
-    # while exists boxes to open
-    while False in status:
-        newkeys = []
-        if len(keys) == 0:
-            return False
-        for key in keys:
-            if not status[key]:
-                newkeys = newkeys + boxes[key]
-                status[key] = True
-        keys = newkeys
-    return True
+    # used keys (default 0)
+    keys = [0]
+    # used each key
+    for key in keys:
+        # open the box and get the keys inside
+        newKeys = boxes[key]
+        for newKey in newKeys:
+            # if the key wasn't use before
+            if newKey not in keys:
+                keys.append(newKey)
+    # if the number of boxes are the same number of keys used
+    if len(boxes) == len(keys):
+        return True
+    return False

@@ -24,8 +24,8 @@ def canUnlockAll(boxes):
         # open the box and get the keys inside
         newKeys = boxes[key]
         for newKey in newKeys:
-            # if the key wasn't use before
-            if newKey not in keys:
+            # if the key wasn't use before and a valid key
+            if newKey not in keys and newKey < len(box):
                 keys.append(newKey)
     # if the number of boxes are the same number of keys used
     if len(boxes) == len(keys):

@@ -11,7 +11,7 @@
 heap_t *heap_insert(heap_t **root, int value)
 {
 	heap_t *new = NULL;
-	size_t size = 0, height = 0, max = 0, min = 0, comp = 0;
+	size_t size = 0, height = 0, min = 0, comp = 0;
 
 	if (root == NULL)
 		return (NULL);
@@ -52,7 +52,7 @@ heap_t *heap_insert(heap_t **root, int value)
  *
  * Return: new node inserted
  */
-void *heap_max(heap_t **pa, heap_t **nw, size_t h, size_t s,
+void heap_max(heap_t **pa, heap_t **nw, size_t h, size_t s,
 	size_t mi, size_t cmp)
 {
 	size_t fullR = 0, fullL = 0;
@@ -135,7 +135,7 @@ size_t sizeHeightMiMxLv(heap_t *tree, size_t sh, size_t height)
 		count1 = sizeHeightMiMxLv(tree->left, 4, 0);
 		count2 = sizeHeightMiMxLv(tree->right, 4, 0);
 		return (count1 + count2);
-	} else if (sh == 5)
+	} else
 	{
 		if (tree == NULL)
 			return (0);
@@ -154,9 +154,7 @@ size_t sizeHeightMiMxLv(heap_t *tree, size_t sh, size_t height)
  */
 size_t powR(size_t x, size_t y)
 {
-	if (y < 0)
-		return (-1);
-	else if (y != 0)
+	if (y != 0)
 		return (x * powR(x, (y - 1)));
 	else
 		return (1);

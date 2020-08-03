@@ -122,7 +122,7 @@ size_t sizeHeightMiMxLv(heap_t *tree, size_t sh, size_t height)
 			count2 = sizeHeightMiMxLv(tree->right, 1, 0) + 1;
 		return ((count1 < count2) ? count2 : count1);
 	} else if (sh == 2)
-		return (powR(2.0, height - 1));
+	return (powR(2.0, height - 1));
 	else if (sh == 3)
 		return ((powR(2.0, height - 1)) + (powR(2.0, height - 1) - 1));
 	else if (sh == 4)

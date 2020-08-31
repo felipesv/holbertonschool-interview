@@ -23,10 +23,10 @@ def printCodes():
     # print file size
     print("File size: {}".format(counters["size"]))
     # print all codes
-    for key, val in cntCode.items():
-        # if one code is not 0
-        if val != 0:
-            print("{}: {}".format(key, val))
+    for key in sorted(cntCode.keys()):
+        # if a val is not 0
+        if cntCode[key] != 0:
+            print("{}: {}".format(key, cntCode[key]))
 
 
 def countCodeSize(listData):

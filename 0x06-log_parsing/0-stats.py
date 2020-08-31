@@ -7,7 +7,7 @@ import sys
 
 counters = {
     "size": 0,
-    "lines": 0
+    "lines": 1
 }
 
 cntCode = {
@@ -27,28 +27,31 @@ def printCodes():
         # if one code is not 0
         if val != 0:
             print("{}: {}".format(key, val))
-        # reset the value
-        cntCode[key] = 0
 
 
 def countCodeSize(listData):
+    """
+    count the codes and file size
+    """
     # count file size
     counters["size"] += int(listData[-1])
-    # count status code
-    cntCode[listData[-2]] += 1
-    # line 10 print
+    # if exists the code
+    if listData[-2] in cntCode:
+        # count status code
+        cntCode[listData[-2]] += 1
+        # line 10 print
 
 
 if __name__ == "__main__":
     try:
         for line in sys.stdin:
             try:
-                counters["lines"] += 1
                 countCodeSize(line.split(" "))
             except:
                 pass
-            if (counters["lines"] % 10 == 0):
+            if counters["lines"] % 10 == 0:
                 printCodes()
+            counters["lines"] += 1
     except KeyboardInterrupt:
         printCodes()
         raise

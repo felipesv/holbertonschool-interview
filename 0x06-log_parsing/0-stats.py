@@ -42,8 +42,11 @@ def countCodeSize(listData):
 if __name__ == "__main__":
     try:
         for line in sys.stdin:
-            counters["lines"] += 1
-            countCodeSize(line.split(" "))
+            try:
+                counters["lines"] += 1
+                countCodeSize(line.split(" "))
+            except:
+                pass
             if (counters["lines"] % 10 == 0):
                 printCodes()
     except KeyboardInterrupt:

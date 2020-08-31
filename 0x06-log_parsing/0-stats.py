@@ -5,12 +5,23 @@ parsing function
 import sys
 
 
-def printCodes(cntCode, cntSize):
+counters = {
+    "size": 0,
+    "lines": 0
+}
+
+cntCode = {
+    "200": 0, "301": 0, "400": 0, "401": 0,
+    "403": 0, "404": 0, "405": 0, "500": 0
+}
+
+
+def printCodes():
     """
     function to print the codes and the number of ocurrence
     """
     # print file size
-    print("File size: {}".format(cntSize))
+    print("File size: {}".format(counters["size"]))
     # print all codes
     for key, val in cntCode.items():
         # if one code is not 0
@@ -20,31 +31,21 @@ def printCodes(cntCode, cntSize):
         cntCode[key] = 0
 
 
-# dict to count the status codes
-cntCode = {
-    "200": 0, "301": 0, "400": 0, "401": 0,
-    "403": 0, "404": 0, "405": 0, "500": 0
-}
-# count the file size
-cntSize = 0
-# count lines
-cnt = 0
+def countCodeSize(listData):
+    # count file size
+    counters["size"] += int(listData[-1])
+    # count status code
+    cntCode[listData[-2]] += 1
+    # line 10 print
 
-try:
-    # read stdin
-    for line in sys.stdin:
-        # count lines
-        cnt += 1
-        # split the line by blank space
-        splitVal = line.split(" ")
-        # count file size
-        cntSize += int(splitVal[8])
-        # count status code
-        cntCode[splitVal[7]] += 1
-        # line 10 print
-        if cnt % 10 == 0:
-            printCodes(cntCode, cntSize)
-            cntSize = 0
-except KeyboardInterrupt:
-    printCodes(cntCode, cntSize)
-    raise
+
+if __name__ == "__main__":
+    try:
+        for line in sys.stdin:
+            counters["lines"] += 1
+            countCodeSize(line.split(" "))
+            if (counters["lines"] % 10 == 0):
+                printCodes()
+    except KeyboardInterrupt:
+        printCodes()
+        raise

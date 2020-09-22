@@ -29,15 +29,16 @@ def validUTF8(data):
 
             return False
         else:
-            if charBytesPrv - 1 == charBytesCur:
+            if binary[0] == '1' and binary[1] == '0':
+                charBytesPrv -= 1
+            elif charBytesPrv - 1 == charBytesCur:
                 charBytesPrv = charBytesCur
-                if charBytesPrv == 0:
+            else:
+                return False
+
+            if charBytesPrv == 1:
                     first = True
-                continue
-            return False
-    if first:
-        return True
-    return False
+    return first
 
 
 def countBytes(binary):

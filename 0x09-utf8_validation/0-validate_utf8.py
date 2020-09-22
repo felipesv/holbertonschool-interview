@@ -14,7 +14,7 @@ def validUTF8(data):
     binaryData = []
 
     for number in data:
-        binaryData.append('{0:08b}'.format(number))
+        binaryData.append('{0:08b}'.format((number & 255)))
 
     for binary in binaryData:
         charBytesCur = countBytes(binary)

@@ -35,12 +35,14 @@ def validUTF8(data):
                     first = True
                 continue
             return False
-    return True
+    if first:
+        return True
+    return False
 
 
 def countBytes(binary):
     """
-    coun number of bytes
+    count number of bytes
     """
     oneCnt = 0
     for i in binary:

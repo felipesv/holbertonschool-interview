@@ -9,27 +9,28 @@ def validUTF8(data):
     validate if data are UTF8 chars
     """
     first = True
-    charBytesNxt = 0
     charBytesPrv = 0
+    charBytesCur = 0
     binaryData = []
 
     for number in data:
         binaryData.append('{0:08b}'.format(number))
 
     for binary in binaryData:
-        charBytesPrv = countBytes(binary)
+        charBytesCur = countBytes(binary)
         if first:
-            if charBytesPrv == 0:
+            if charBytesCur == 0:
                 continue
 
-            if charBytesPrv >= 2 and charBytesPrv <= 4:
+            if charBytesCur >= 2 and charBytesCur <= 4:
+                charBytesPrv = charBytesCur
                 first = False
                 continue
 
             return False
         else:
-            if charBytesPrv - 1 == charBytesNxt:
-                charBytesPrv = charBytesNxt
+            if charBytesPrv - 1 == charBytesCur:
+                charBytesPrv = charBytesCur
                 if charBytesPrv == 0:
                     first = True
                 continue

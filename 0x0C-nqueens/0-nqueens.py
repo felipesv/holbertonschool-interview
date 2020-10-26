@@ -88,11 +88,8 @@ def chess(N):
             continue
         elif len(result) == N:
             print(result)
-            row = 0
-            col = result[0][1] + 1
-            if col == N:
-                break
-            result = []
+            col += 1
+            del result[row]
             continue
         row += 1
         col = 0

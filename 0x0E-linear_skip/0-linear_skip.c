@@ -70,7 +70,7 @@ skiplist_t *linear_skip(skiplist_t *head, int value)
 		if (next != NULL)
 		{
 			print_check(next->index, next->n);
-			if (next->n > value)
+			if (next->n >= value)
 			{
 				print_found(current->index, next->index, NULL);
 				return (find_one_by_one(current, value));

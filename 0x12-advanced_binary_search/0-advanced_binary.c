@@ -63,7 +63,7 @@ int recursion_binary(int *array, int from, int to, int value)
  */
 int advanced_binary(int *array, size_t size, int value)
 {
-	if (array == NULL)
+	if (array == NULL || size == 0)
 		return (-1);
 
 	return (recursion_binary(array, 0, (int) size - 1, value));

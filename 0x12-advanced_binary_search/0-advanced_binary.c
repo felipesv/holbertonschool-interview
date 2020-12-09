@@ -33,19 +33,16 @@ int recursion_binary(int *array, int from, int to, int value)
 {
 	int middle = ((to - from) / 2) + from;
 
-	if (from == to)
-	{
-		if (array[from] == value)
-			return (from);
-		print_array(array, from, to);
-		return (-1);
-	}
-
 	print_array(array, from, to);
+	if (from == to)
+		return (-1);
+	if (array[middle] == value && array[middle - 1] != value)
+		return (middle);
 	if (array[middle] >= value)
 		return (recursion_binary(array, from, middle, value));
-	else
+	if (array[middle] <= value)
 		return (recursion_binary(array, middle + 1, to, value));
+	return (-1);
 }
 /**
  * advanced_binary - print the message

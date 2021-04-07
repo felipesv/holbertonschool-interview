@@ -11,8 +11,11 @@ def pascal_triangle(n):
     if n <= 0:
         return []
 
-    triangle = []
-    for i in range(0, n):
-        number = pow(11, i)
-        triangle.append([int(j) for j in str(number)])
-    return triangle
+    a = []
+    for i in range(n):
+        b = [1]
+        if a:
+            for j in range(i):
+                b.append(sum(a[-1][j:j+2]))
+        a.append(b)
+    return a
